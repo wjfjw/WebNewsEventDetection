@@ -4,12 +4,14 @@ import static com.couchbase.client.java.query.Select.select;
 import static com.couchbase.client.java.query.dsl.Expression.i;
 import static com.couchbase.client.java.query.dsl.Expression.x;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.couchbase.client.java.Bucket;
+import com.couchbase.client.java.document.json.JsonArray;
 import com.couchbase.client.java.document.json.JsonObject;
 import com.couchbase.client.java.query.N1qlQuery;
 import com.couchbase.client.java.query.N1qlQueryResult;
@@ -47,5 +49,30 @@ public class NewsRepository
 		JsonObject newsObject = fristRow.value();
 		
 		return newsObject;
+	}
+	
+	/**
+	 * 获取文章列表
+	 * @param newsId
+	 * @return
+	 */
+	public List<JsonObject> getNewsList(JsonArray news_id_list)
+	{
+		Statement statement = select("news_time", "news_title", "news_category", "news_url",
+				"news_source", "news_summary", "news_named_entity")
+				.from(i(bucket.name()))
+				.where( x("news_id").in(news_id_list) );
+				
+		N1qlQuery query = N1qlQuery.simple(statement);
+		N1qlQueryResult result = bucket.query(query);
+		List<N1qlQueryRow> resultRowList = result.allRows();
+		
+		List<JsonObject> newsList = new ArrayList<JsonObject>();
+
+		for(N1qlQueryRow row : resultRowList) {
+			newsList.add(row.value());
+		}
+		
+		return newsList;
 	}
 }
