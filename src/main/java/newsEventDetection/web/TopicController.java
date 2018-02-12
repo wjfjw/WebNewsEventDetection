@@ -81,11 +81,9 @@ public class TopicController
 			String news_url = newsObject.getString("news_url");
 			//新闻的来源
 			String news_source = newsObject.getString("news_source");
-			//新闻的命名实体
-			JsonObject named_entity_object = newsObject.getObject("news_named_entity");
 			
 			simpleNewsList.add( new SimpleNews(
-					news_time, news_title, news_url, news_source, news_named_entity) );
+					news_time, news_title, news_url, news_source) );
 		}
 		
 		//加入model

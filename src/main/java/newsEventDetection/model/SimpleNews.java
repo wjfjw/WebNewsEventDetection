@@ -9,16 +9,15 @@ public class SimpleNews
 	private String news_title;
 	private String news_url;
 	private String news_source;
-	private Map<String, List<String>> news_named_entity;
+//	private Map<String, List<String>> news_named_entity;
 	
 	public SimpleNews(String news_time, String news_title, String news_url, 
-			String news_source, Map<String, List<String>> news_named_entity) 
+			String news_source) 
 	{
 		this.news_time = news_time;
 		this.news_title = news_title;
 		this.news_url = news_url;
 		this.news_source = news_source;
-		this.news_named_entity = news_named_entity;
 	}
 	
 	public String getNews_time(){
@@ -37,8 +36,8 @@ public class SimpleNews
 		return news_source;
 	}
 	
-	public Map<String, List<String>> getNews_named_entity(){
-		return news_named_entity;
-	}
+//	public Map<String, List<String>> getNews_named_entity(){
+//		return news_named_entity;
+//	}
 	
 }
