@@ -12,7 +12,7 @@ import com.couchbase.client.java.env.CouchbaseEnvironment;
 import com.couchbase.client.java.env.DefaultCouchbaseEnvironment;
 
 @Configuration
-public class DatabaseBucketConfig 
+public class DatabaseConfig 
 {
     @Value("${storage.bucketName}")
     private String bucketName;
@@ -20,8 +20,8 @@ public class DatabaseBucketConfig
     @Value("${storage.bucketPassword}")
     private String bucketPassword;
     
-    @Value("${spring.couchbase.bootstrap-hosts}")
-    private String clusterHostName;
+//    @Value("${spring.couchbase.bootstrap-hosts}")
+//    private String clusterHostName;
     
 //    @Bean
 //    public Cluster couchbaseCluster() {
@@ -36,9 +36,8 @@ public class DatabaseBucketConfig
     	CouchbaseEnvironment env = DefaultCouchbaseEnvironment.builder()
                 .connectTimeout(10000) //10000ms = 10s, default is 5s
                 .build();
-
     	
-    	Cluster cluster = CouchbaseCluster.create(env, clusterHostName);
+    	Cluster cluster = CouchbaseCluster.create(env, "localhost");
         return cluster.openBucket(bucketName, bucketPassword);
     }
 }

@@ -45,6 +45,8 @@ public class TopicRepository
 		N1qlQueryRow fristRow = resultRowList.get(0);
 		JsonObject topicObject = fristRow.value();
 		
+		topicObject = topicObject.getObject(bucket.name());
+		
 		return topicObject;
 	}
 	
@@ -68,7 +70,9 @@ public class TopicRepository
 		List<JsonObject> topicList = new ArrayList<JsonObject>();
 
 		for(N1qlQueryRow row : resultRowList) {
-			topicList.add(row.value());
+			JsonObject topicObject = row.value();
+			topicObject = topicObject.getObject(bucket.name());
+			topicList.add(topicObject);
 		}
 		
 		return topicList;

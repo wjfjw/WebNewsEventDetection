@@ -18,6 +18,7 @@ import com.couchbase.client.java.query.N1qlQuery;
 import com.couchbase.client.java.query.N1qlQueryResult;
 import com.couchbase.client.java.query.N1qlQueryRow;
 import com.couchbase.client.java.query.Statement;
+import com.couchbase.client.java.query.dsl.Sort;
 
 @Service
 public class EventRepository 
@@ -62,7 +63,8 @@ public class EventRepository
 	{
 		Statement statement = select("*")
 				.from(i(bucket.name()))
-				.where( x("event_id").in(event_id_list) );
+				.where( x("event_id").in(event_id_list) )
+				.orderBy(Sort.desc("event_id"));
 				
 		N1qlQuery query = N1qlQuery.simple(statement);
 		N1qlQueryResult result = bucket.query(query);
@@ -71,7 +73,9 @@ public class EventRepository
 		List<JsonObject> eventList = new ArrayList<JsonObject>();
 
 		for(N1qlQueryRow row : resultRowList) {
-			eventList.add(row.value());
+			JsonObject eventObject = row.value();
+			eventObject = eventObject.getObject(bucket.name());
+			eventList.add(eventObject);
 		}
 		
 		return eventList;

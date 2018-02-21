@@ -29,29 +29,48 @@
         </nav>
       </div>
     </div>
+    
+    <br></br>  <br></br>
+    <br></br>  <br></br>
 
     <div class="container">
-
-      <div class="blog-header">
-        <h1 class="blog-title">The Bootstrap Blog</h1>
-        <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
-      </div>
-
       <div class="row">
-
-        <div class="col-md-8 col-md-offset-2 blog-main" th:each="simpleTopic : ${simpleTopicList}">
+        <div class="col-md-8 col-md-offset-2 blog-main">
         
+          <!-- 事件标题和摘要 -->
           <div class="blog-post">
-            <a class="blog-post-title" th:text="${simpleTopic.news_title}" th:href="@{/{topicId}(topicId=${simpleTopic.topic_id})}"></a>
-            <p class="blog-post-meta" th:text="${simpleTopic.news_time}"></p>
-            <p th:text="${simpleTopic.news_summary}"></p>
-            <hr></hr>
+            <h4 class="blog-post-title" th:text="${event_title}"></h4>
+            <br></br>
+            <p th:text="${event_summary}"></p>
           </div><!-- /.blog-post -->
+          
+          <!-- 事件包含的新闻列表 -->
+          <ul th:each="simpleNews : ${simpleNewsList}">
+            <li> 
+              <a th:text="${simpleNews.news_title}" th:href="@{${simpleNews.news_url}}" target="_blank"></a>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <p th:text="${simpleNews.news_source}" class="blog-post-meta"></p> 
+            </li>
+          </ul>
+          
+          <br></br>
+          <br></br>
+          
+          <!-- 事件追踪，话题的事件列表 -->
+          <div class="panel panel-info">
+  			<div class="panel-heading">
+    		  <h3 class="panel-title">事件追踪</h3>
+  			</div>
+  			<div class="panel-body">
+  			  <dl th:each="simpleEvent : ${simpleEventList}" class="dl-horizontal">
+  			    <dt th:text="${simpleEvent.event_time}"></dt>
+  			    <dd th:text="${simpleEvent.news_title}"></dd>
+			  </dl>
+  			</div>
+		  </div>
 
         </div><!-- /.blog-sidebar -->
-
       </div><!-- /.row -->
-
     </div><!-- /.container -->
 
     <footer class="blog-footer">
