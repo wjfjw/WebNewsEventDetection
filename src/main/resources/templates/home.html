@@ -22,22 +22,21 @@
       <div class="container">
         <nav class="blog-nav">
           <a class="blog-nav-item active" href="#">Home</a>
-          <a class="blog-nav-item" href="#">New features</a>
-          <a class="blog-nav-item" href="#">Press</a>
-          <a class="blog-nav-item" href="#">New hires</a>
-          <a class="blog-nav-item" href="#">About</a>
+          <a class="blog-nav-item" href="#">Topic</a>
         </nav>
       </div>
     </div>
 
     <div class="container">
 
-      <div class="blog-header">
-        <h1 class="blog-title">The Bootstrap Blog</h1>
-        <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>
-      </div>
-
       <div class="row">
+      
+        <div class="col-md-8 col-md-offset-2 blog-main">
+      	  <div class="blog-header">
+            <h1 class="blog-title">新闻事件检测</h1>
+            <p class="lead blog-description">News Event Detection</p>
+          </div>
+        </div>
 
         <div class="col-md-8 col-md-offset-2 blog-main" th:each="simpleTopic : ${simpleTopicList}">
         
@@ -54,11 +53,15 @@
 
     </div><!-- /.container -->
 
+<!--     <footer class="blog-footer"> -->
+<!--       <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p> -->
+<!--       <p> -->
+<!--         <a href="#">Back to top</a> -->
+<!--       </p> -->
+<!--     </footer> -->
+
     <footer class="blog-footer">
-      <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-      <p>
-        <a href="#">Back to top</a>
-      </p>
+      <p>&copy; 2018 &nbsp;中山大学&nbsp; 数据科学与计算机学院&nbsp; 吴杰锋</p>
     </footer>
 
   </body>

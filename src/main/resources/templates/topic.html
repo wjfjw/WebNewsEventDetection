@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
     <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
 
-    <title>Home</title>
+    <title>Topic</title>
 
     <!-- CSS -->
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"></link>
@@ -21,17 +21,14 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="#">Home</a>
-          <a class="blog-nav-item" href="#">New features</a>
-          <a class="blog-nav-item" href="#">Press</a>
-          <a class="blog-nav-item" href="#">New hires</a>
-          <a class="blog-nav-item" href="#">About</a>
+          <a class="blog-nav-item" th:href="@{/}">Home</a>
+          <a class="blog-nav-item active" href="#">Topic</a>
         </nav>
       </div>
     </div>
     
     <br></br>  <br></br>
-    <br></br>  <br></br>
+    <br></br>
 
     <div class="container">
       <div class="row">
@@ -45,19 +42,24 @@
           </div><!-- /.blog-post -->
           
           <!-- 事件包含的新闻列表 -->
-          <ul th:each="simpleNews : ${simpleNewsList}">
-            <li> 
-              <a th:text="${simpleNews.news_title}" th:href="@{${simpleNews.news_url}}" target="_blank"></a>
-              &nbsp;&nbsp;&nbsp;&nbsp;
-              <p th:text="${simpleNews.news_source}" class="blog-post-meta"></p> 
-            </li>
-          </ul>
+          <div class="row">
+            <ul th:each="simpleNews : ${simpleNewsList}">
+              <li>
+                <a class="col-md-9"
+              		th:text="${simpleNews.news_title}" 
+              		th:href="@{${simpleNews.news_url}}" 
+              		target="_blank"></a>
+                <p th:text="${simpleNews.news_source}" class="col-md-3 blog-post-meta"></p>
+              </li>
+            </ul>
+          </div>
+
           
           <br></br>
           <br></br>
           
           <!-- 事件追踪，话题的事件列表 -->
-          <div class="panel panel-info">
+          <div class="panel panel-primary">
   			<div class="panel-heading">
     		  <h3 class="panel-title">事件追踪</h3>
   			</div>
@@ -74,10 +76,7 @@
     </div><!-- /.container -->
 
     <footer class="blog-footer">
-      <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-      <p>
-        <a href="#">Back to top</a>
-      </p>
+      <p>&copy; 2018 &nbsp;中山大学&nbsp; 数据科学与计算机学院&nbsp; 吴杰锋</p>
     </footer>
 
   </body>

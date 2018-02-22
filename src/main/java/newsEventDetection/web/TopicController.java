@@ -64,8 +64,8 @@ public class TopicController
 		
 		//******************************************************//
 		
-		//获取话题的最后一个事件
-		JsonObject lastEventObject = eventObjectList.get( eventObjectList.size()-1 );
+		//获取话题中发生时间最晚的一个事件
+		JsonObject lastEventObject = eventObjectList.get(0);
 		//获取新闻列表
 		JsonArray event_news_list = lastEventObject.getArray("event_news_list");
 		List<JsonObject> newsObjectList = newsRepository.getNewsList(event_news_list);
@@ -91,7 +91,7 @@ public class TopicController
 		
 		//******************************************************//
 		
-		//获取最后一个事件的第一篇新闻
+		//获取最晚一个事件的第一篇新闻
 		int lastEventId = lastEventObject.getInt("event_id");
 		int firstNewsId = eventRepository.getFirstNewsId(lastEventId);
 		JsonObject newsObject = newsRepository.getNews(firstNewsId);

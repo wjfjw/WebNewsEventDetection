@@ -64,7 +64,7 @@ public class EventRepository
 		Statement statement = select("*")
 				.from(i(bucket.name()))
 				.where( x("event_id").in(event_id_list) )
-				.orderBy(Sort.desc("event_id"));
+				.orderBy(Sort.desc("event_start_time"));
 				
 		N1qlQuery query = N1qlQuery.simple(statement);
 		N1qlQueryResult result = bucket.query(query);
