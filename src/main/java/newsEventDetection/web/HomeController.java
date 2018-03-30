@@ -71,13 +71,13 @@ public class HomeController
 	{
 		//算法参数
 		//singlePass
-		double single_pass_clustering_threshold = 0.45;
+		double single_pass_clustering_threshold = 0.5;
 		int single_pass_time_window = 24;		//单位：小时
 		//kmeans
 		int kmeans_cluster_number = 100;
 		int kmeans_time_window = 24;		//单位：小时
 		//topic tracking
-		double topic_tracking_threshold = 0.5;
+		double topic_tracking_threshold = 0.7;
 		String algorithm_name = "single_pass";
 		
 		//获取topic的参数

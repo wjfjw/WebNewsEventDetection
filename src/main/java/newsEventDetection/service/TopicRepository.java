@@ -17,6 +17,7 @@ import com.couchbase.client.java.query.N1qlQuery;
 import com.couchbase.client.java.query.N1qlQueryResult;
 import com.couchbase.client.java.query.N1qlQueryRow;
 import com.couchbase.client.java.query.Statement;
+import com.couchbase.client.java.query.dsl.Sort;
 
 @Service
 public class TopicRepository 
@@ -61,6 +62,7 @@ public class TopicRepository
 		Statement statement = select("*")
 				.from(i(bucket.name()))
 				.where( x("topic_algorithm").eq(x(algorithm_id)).and( x("topic_category").eq(s(category)) ) )
+				.orderBy(Sort.desc("ARRAY_COUNT(topic_event_list)"))
 				.limit(10);
 				
 		N1qlQuery query = N1qlQuery.simple(statement);

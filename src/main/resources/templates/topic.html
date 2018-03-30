@@ -42,17 +42,15 @@
           </div><!-- /.blog-post -->
           
           <!-- 事件包含的新闻列表 -->
-          <div class="row">
-            <ul th:each="simpleNews : ${simpleNewsList}">
-              <li>
-                <a class="col-md-9"
-              		th:text="${simpleNews.news_title}" 
+            <ul>
+              <li th:each="simpleNews : ${simpleNewsList}">
+                <a th:text="${simpleNews.news_title}" 
               		th:href="@{${simpleNews.news_url}}" 
               		target="_blank"></a>
-                <p th:text="${simpleNews.news_source}" class="col-md-3 blog-post-meta"></p>
+              	<br></br>
+                <p th:text="${simpleNews.news_source}" class="blog-post-meta"></p>
               </li>
             </ul>
-          </div>
 
           
           <br></br>

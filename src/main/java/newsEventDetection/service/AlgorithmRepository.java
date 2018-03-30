@@ -41,13 +41,16 @@ public class AlgorithmRepository
 	{
 		Expression expression = x("algorithm_name").eq(s(algorithm_name));
 		if(algorithm_name.equals("single_pass")) {
-			expression = expression.and( x("algorithm_parameters.similarity_threshold").eq( x(single_pass_clustering_threshold) ) )
+			expression = expression.and( x("algorithm_parameters.similarity_threshold").between( 
+					x(single_pass_clustering_threshold-0.01).and(x(single_pass_clustering_threshold+0.01)) ) )
 					.and( x("algorithm_parameters.time_window").eq( x(single_pass_time_window) ) )
-					.and( x("algorithm_parameters.topic_tracking_threshold").eq( x(topic_tracking_threshold) ) );
+					.and( x("algorithm_parameters.topic_tracking_threshold").between( 
+							x(topic_tracking_threshold-0.01).and(x(topic_tracking_threshold+0.01)) ) );
 		}else if(algorithm_name.equals("kmeans")) {
 			expression = expression.and( x("algorithm_parameters.cluster_number").eq( x(kmeans_cluster_number) ) )
 					.and( x("algorithm_parameters.time_window").eq( x(kmeans_time_window) ) )
-					.and( x("algorithm_parameters.topic_tracking_threshold").eq( x(topic_tracking_threshold) ) );
+					.and( x("algorithm_parameters.topic_tracking_threshold").between( 
+							x(topic_tracking_threshold-0.01).and(x(topic_tracking_threshold+0.01)) ) );
 		}
 		
 		//根据算法参数查询algorithm_id
